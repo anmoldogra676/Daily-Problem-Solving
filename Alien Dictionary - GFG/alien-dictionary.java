@@ -88,6 +88,11 @@ class Solution
         // Write your code here
         // Question basically --> kaun phle aata hai order of character
         // u->v ko edge 
+        // logic Same --> Topological Order
+        // cahracter ka so hme dekhna pdega kaun sa character kaise aa rha hai 
+        // start se dekhe ki kaun sa unmatch hai mtlb woh b phle aaya hai a se 
+        // phr next dekha toh d phle aaya a se 
+        // order nikalna hai ki kaun phle --> u->v edge hai toh u phle v baad m
         HashMap<Character , ArrayList<Character>>hs = new HashMap<>();
         for(int i=0 ;i<K;i++){
             char ch =(char)('a'+i);
