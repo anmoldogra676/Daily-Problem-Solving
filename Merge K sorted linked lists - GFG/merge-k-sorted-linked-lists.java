@@ -78,12 +78,9 @@ class GfG
 // a is an array of Nodes of the heads of linked lists
 // and N is size of array a
 
-
-class Solution
+/*
+Priority Queue
 {
-    //Function to merge K sorted linked list.
-    Node mergeKList(Node[]arr,int K)
-    {
         //Add your code here.
         PriorityQueue<Node>pq = new PriorityQueue<>((a,b)->{
             return a.data-b.data;
@@ -116,5 +113,44 @@ class Solution
         
         return head;
         
+    }
+*/
+
+class Solution
+{
+    //Function to merge K sorted linked list.
+    // O(nk log k)
+    Node mergeKList(Node[]arr,int K)
+    {
+        if(K==1)return arr[0];
+        return helper(arr, 0, K-1);
+    }
+    public Node helper(Node[]arr, int i, int j){
+       
+        if(i==j)return arr[i];
+        int mid= (i+j)/2;
+        Node l = helper(arr, i, mid);
+        Node r = helper(arr, mid+1, j);
+        return MergeTwoList(l, r);
+    }
+    public Node MergeTwoList(Node m, Node n){
+        Node dummy = new Node(-1);
+        Node curr= dummy;
+        Node l=m;
+        Node r= n;
+        while(l!=null && r!=null){
+            int val1 = l.data;
+            int val2 = r.data;
+            if(val1<=val2){
+                curr.next = l;
+                l=l.next;
+            }else{
+                curr.next=r;
+                r=r.next;
+            }
+            curr=curr.next;
+        }
+        curr.next = (l!=null)?l:r;
+        return dummy.next;
     }
 }
