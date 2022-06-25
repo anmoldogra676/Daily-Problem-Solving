@@ -32,7 +32,6 @@ class Solution {
             pair p =pq.poll();
             char ch = p.ch;
             int val = p.val;
-            if(save!=null && ch==save.ch)return "";
             val--;
             ans.append(ch);
             if(save!=null && ch!=save.ch){
@@ -51,3 +50,25 @@ class Solution {
         return ans.toString();
     }
 }
+
+
+// 1. Edge  case
+
+
+//  aaabb -> a->3 b->2
+     
+//      1. hashmap--> (char, count no. of time char appears);
+// 2. PrioryQueue ->
+
+
+
+// a-->2. b->1
+// ans=-->  ab
+// if(s length ==0 || character does not match with last character of answer String)add into answer
+// if(last character of my answer matches with character){
+//    remove the 2nd most 
+//    and add the first one and 2nd one also.
+// }
+
+    
+ 
