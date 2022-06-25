@@ -23,12 +23,13 @@ class Solution {
         });
         for(int i=0;i<26;i++){
             if(ch1[i]!=0){
+                if(ch1[i]>(s.length()+1)/2)return "";
                 pq.add(new pair( (char)('a'+i), ch1[i])); // character and kitni baar appear hua hai
             }
         }
+
         pair save=null;
         while(pq.size()>0){
-    
             pair p =pq.poll();
             char ch = p.ch;
             int val = p.val;
@@ -46,7 +47,7 @@ class Solution {
         
             
         }
-        if(ans.length()!=s.length())return"";
+        // if(ans.length()!=s.length())return"";
         return ans.toString();
     }
 }
