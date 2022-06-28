@@ -116,7 +116,7 @@ class Solution
             fast=fast.next.next;
             if(slow==fast)break;
         }
-        if(fast==null || fast.next==null)return; // no loop 
+        if(slow!=fast)return; // no loop 
         // loop ya cycle hai ab remove krni hai 
         Node curr=head;
         while(curr!=slow){
