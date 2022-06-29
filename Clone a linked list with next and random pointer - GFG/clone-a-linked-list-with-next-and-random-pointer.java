@@ -172,23 +172,39 @@ class Clone {
     Node copyList(Node head) {
         // your code here
         Node curr=head;
-        Node temp =new Node(-1);
-        Node save = temp;
-        HashMap<Node,Node>hs = new HashMap<>();
+       // clone next ->
         while(curr!=null){
-            save.next =new Node(curr.data);
-            save=save.next;
-            hs.put(curr, save);
-            curr=curr.next;
+            Node save = curr.next;
+            Node nn = new Node(curr.data);
+            curr.next=nn;
+            nn.next=save;
+            curr=save;
+            
             
         }
-        // new Node and Old Node ka pouinter bna  liya hai 
+        // clone Random
+        
         curr= head;
         while(curr!=null){
-            hs.get(curr).arb = hs.get(curr.arb);
-            curr=curr.next;
+            if(curr.arb==null){
+                curr.next.arb =null;
+            }else{
+                curr.next.arb = curr.arb.next;
+            }
+            curr=curr.next.next;
         }
-        return temp.next;
+        // Extract the list
+        curr=head;
+        Node dummy= new Node(-1);
+        Node temp = dummy;
+        
+        while(curr!=null){
+            temp.next=curr.next;
+            curr.next =curr.next.next;
+            curr=curr.next;
+            temp= temp.next;
+        }
+        return dummy.next;
     }
 }
 
