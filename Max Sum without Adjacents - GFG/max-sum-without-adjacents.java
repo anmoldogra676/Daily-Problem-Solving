@@ -33,8 +33,20 @@ class Solution {
     int findMaxSum(int arr[], int n) {
         // code here
         int[]dp = new int[n];
-        Arrays.fill(dp, -1);
-        return helper(arr, n-1, dp);
+        // Arrays.fill(dp, -1);
+        // return helper(arr, n-1, dp);
+        //-> Tabulation
+        dp[0]=arr[0];
+        for(int i=1 ;i<n;i++){
+            // pick , not pick
+            int notPick = dp[i-1];
+            int pick =arr[i];
+            if(i>1){
+                pick+=dp[i-2];
+            }
+            dp[i]=Math.max(pick, notPick);
+        }
+        return dp[n-1];
     }
     public int helper(int[]arr, int n, int []dp){
         if(n<0)return 0;
