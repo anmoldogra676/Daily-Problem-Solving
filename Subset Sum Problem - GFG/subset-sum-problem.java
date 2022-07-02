@@ -37,8 +37,26 @@ class Solution{
 
     static Boolean isSubsetSum(int n, int arr[], int sum){
         // code here
-        int[][]dp = new int[n][sum+1];
-        return helper(arr, sum, n-1, dp);
+        if(sum==0)return true;
+        boolean[][]dp = new boolean[n][sum+1];
+        // return helper(arr, sum, n-1, dp);
+        if(arr[0]<=sum)dp[0][arr[0]]=true;
+        for(int i=0;i< n;i++ )dp[i][0]=true;
+        for(int i=1;i<arr.length ;i++){
+            for(int j=1;j<=sum;j++){
+                boolean val1=dp[i-1][j];
+                boolean val2=false;
+                if(j-arr[i]>=0){
+                    val2 =dp[i-1][j-arr[i]];
+                }
+                dp[i][j]= val1 || val2;
+            }
+        }
+        
+        
+        
+       return dp[n-1][sum];
+ 
     }
     public static  Boolean helper(int []arr, int sum, int idx, int [][]dp){
         if(sum==0)return true;
