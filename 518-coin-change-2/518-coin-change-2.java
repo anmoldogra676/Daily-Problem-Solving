@@ -7,17 +7,33 @@ class Solution {
         // return helper(amount, coins,n-1,dp);--->Memoization
         // tabulation-->
         // base case
-        for(int i=0;i<=amount;i++){
-            if(i%arr[0]==0)dp[0][i]=1;
+        // for(int i=0;i<=amount;i++){
+        //     if(i%arr[0]==0)dp[0][i]=1;
+        // }
+        // // traverse
+        // for(int i=1;i<n;i++){
+        //     for(int j=0;j<=amount;j++){
+        //         dp[i][j]=dp[i-1][j];
+        //         if(j-arr[i]>=0)dp[i][j]+=dp[i][j-arr[i]];
+        //     }
+        // }
+        // return dp[n-1][amount];
+        
+        // Space optimization
+        int[]prev = new int[amount+1];
+        int[]curr = new int[amount+1];
+           for(int i=0;i<=amount;i++){
+            if(i%arr[0]==0)prev[i]=1;
         }
         // traverse
         for(int i=1;i<n;i++){
             for(int j=0;j<=amount;j++){
-                dp[i][j]=dp[i-1][j];
-                if(j-arr[i]>=0)dp[i][j]+=dp[i][j-arr[i]];
+                curr[j]=prev[j];
+                if(j-arr[i]>=0)curr[j]+=curr[j-arr[i]];
             }
+            prev=curr;
         }
-        return dp[n-1][amount];
+        return prev[amount];
     }
     public int helper(int a, int []arr, int n, int[][]dp){
         if(n==0){
