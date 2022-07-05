@@ -3,18 +3,24 @@ class Solution {
         Arrays.sort(arr);
         if(arr.length==0)return 0;
         int ans=1;
-        int c=1;
-        for(int i=arr.length-2;i>=0;i--){
-            if(arr[i]==arr[i+1])continue;
-            if(arr[i]+1==arr[i+1]){
-                c++;
-            }else{
-                c=1;
+        HashSet<Integer>hs = new HashSet<>();
+        for(int a: arr)hs.add(a); // added all the elements
+        for(int a: arr){
+            if(hs.contains(a-1)==false){
+                // starting point
+                int cv=a;
+                int c=1;
+                while(hs.contains(cv+1)){
+                    c++;
+                    cv=cv+1;
+                }
+                ans=Math.max(ans, c);
             }
-            ans=Math.max(ans, c);
         }
+
         return ans;
     }
 }
 
-// 1 2 3 4 100 200
+
+
