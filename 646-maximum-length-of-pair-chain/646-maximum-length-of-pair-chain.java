@@ -1,6 +1,7 @@
 class Solution {
     public int findLongestChain(int[][] pairs) {
         // Also a variation of activity selection
+        // max number of meeting in one Room 
         Arrays.sort(pairs,(a,b)->{
             return a[1]-b[1];
         });
