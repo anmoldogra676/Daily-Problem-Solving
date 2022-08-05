@@ -9,10 +9,24 @@ class Solution {
             arr[i+1]=nums[i];
         }
         int [][]dp = new int [arr.length][arr.length];
-        for(int []a:dp){
-            Arrays.fill(a,-1);
+        // for(int []a:dp){
+        //     Arrays.fill(a,-1);
+        // }
+        
+        for(int i=arr.length-2;i>=1;i--){
+            for(int j= 1;j<=arr.length-2 ;j++)
+            {
+                if(i>j)continue;
+                int max=Integer.MIN_VALUE;
+                for(int k=i;k<=j;k++){
+                int step =  arr[i-1]*arr[k]*arr[j+1]  +dp[i][k-1]+ dp[k+1][j];
+                 max=Math.max(max, step);
+            }
+                dp[i][j]=max;
+            }
         }
-        return h(1, arr.length-2, arr,dp);
+        return dp[1][nums.length];
+        // return h(1, arr.length-2, arr,dp);
         
     }
     public int h(int i, int j, int []arr,int[][]dp){
