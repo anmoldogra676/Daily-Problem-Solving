@@ -36,13 +36,13 @@ class GFG {
 
 class Solution {
 
-    public static String PartyType( long a[], int n)
+    public static String PartyType( long arr[], int n)
     {
         // Your code goes here
         HashSet<Long>hs = new HashSet<>();
-        for(long v: a){
-            if(hs.contains(v))return "BOYS";
-            hs.add(v);
+        for(long a:arr){
+            if(hs.contains(a))return "BOYS";
+            hs.add(a);
         }
         return "GIRLS";
     }
