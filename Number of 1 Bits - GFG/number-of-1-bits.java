@@ -26,8 +26,8 @@ class Solution {
         // code here
         int count=0;
         for(int i=0;i<32;i++){
-            int mask = N>>i;
-            if( (int)(mask & 1) ==1){
+            int mask = 1<<i;
+            if( (int)(mask & N)!=0){
                 count++;
             }
         }
